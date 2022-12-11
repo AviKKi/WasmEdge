@@ -74,7 +74,7 @@ jobs:
         echo "make download"
         rm -rf $(find ./dl/ -size -1024c)        
         echo "starting make package"
-        make package/utils/WasmEdge/compile
+        make package/utils/WasmEdge/compile -j1 V=s
         echo "package built"
     - name: Pack OpenWrt images and WasmEdge ipk
       run: |
