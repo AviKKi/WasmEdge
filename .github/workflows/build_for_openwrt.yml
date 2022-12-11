@@ -4,38 +4,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - ".github/workflows/build_for_openwrt.yml"
-      - "include/**"
-      - "lib/**"
-      - "plugins/**"
-      - "examples/**"
-      - "rpm/**"
-      - "test/**"
-      - "thirdparty/**"
-      - "tools/**"
-      - "CMakeLists.txt"
-      - "cmake/**"
-  pull_request:
-    branches:
-      - master
-      - 'proposal/**'
-    paths:
-      - ".github/workflows/build_for_openwrt.yml"
-      - "include/**"
-      - "lib/**"
-      - "plugins/**"
-      - "examples/**"
-      - "rpm/**"
-      - "test/**"
-      - "thirdparty/**"
-      - "tools/**"
-      - "CMakeLists.txt"
-      - "cmake/**"
+on: workflow_dispatch
 
 jobs:
   # TODO: Refactor `lint` with `on.workflow_run`
