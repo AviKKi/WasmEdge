@@ -40,7 +40,7 @@ jobs:
         cd ../openwrt
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-    - name: Make WasmEdge package
+    - name: Make OpenWRT Base Image
       run: |
         cd ../
         mkdir -p ./openwrt/package/utils/WasmEdge
@@ -64,7 +64,6 @@ jobs:
         CONFIG_PACKAGE_libpthread=y
         CONFIG_PACKAGE_libstdcpp=y
         CONFIG_PACKAGE_boost=y
-        CONFIG_PACKAGE_WasmEdge=y
         EOF
         sed -i 's/^[ \t]*//g' ./.config
         make defconfig
