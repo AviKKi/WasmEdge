@@ -49,15 +49,6 @@ jobs:
         cd ./openwrt
         ls ./
         make menuconfig
-        make tools/install
-        make toolchain/install
-        make package/ltq-dsl-app/compile
-        make package/unetd/compile
-        make package/unet-cli/compile
-        make package/fxload/compile
-        make package/ltq-dsl-app/compile
-        make package/utils/WasmEdge/compile V=s
-        make package/index 
     - name: Pack OpenWrt images and WasmEdge ipk
       run: |
         cp -rf $(find ../openwrt/bin/ -type f -name "openwrt-x86-64-generic-rootfs.tar.gz") ./
