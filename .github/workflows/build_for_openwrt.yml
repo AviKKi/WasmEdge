@@ -66,10 +66,16 @@ jobs:
         CONFIG_PACKAGE_boost=y
         CONFIG_PACKAGE_WasmEdge=y
         EOF
+        echo "config file created"
         sed -i 's/^[ \t]*//g' ./.config
         make defconfig
+        echo "make defconfig"
         make download -j8 || make download -j1 V=s
+        echo "make download"
+        rm -rf $(find ./dl/ -size -1024c)        
+        echo "starting make package"
         make package/utils/WasmEdge/compile
+        echo "package built"
     - name: Pack OpenWrt images and WasmEdge ipk
       run: |
         cp -rf $(find ../openwrt/bin/ -type f -name "openwrt-x86-64-generic-rootfs.tar.gz") ./
