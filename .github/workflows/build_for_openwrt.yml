@@ -48,8 +48,16 @@ jobs:
         cp ./WasmEdge/utils/openwrt/configuration/Makefile ./openwrt/package/utils/WasmEdge/
         cd ./openwrt
         ls ./
-        make download -j8 || make download -j1 V=s
+        make menuconfig
+        make tools/install
+        make toolchain/install
+        make package/ltq-dsl-app/compile
+        make package/unetd/compile
+        make package/unet-cli/compile
+        make package/fxload/compile
+        make package/ltq-dsl-app/compile
         make package/utils/WasmEdge/compile V=s
+        make package/index 
     - name: Pack OpenWrt images and WasmEdge ipk
       run: |
         cp -rf $(find ../openwrt/bin/ -type f -name "openwrt-x86-64-generic-rootfs.tar.gz") ./
