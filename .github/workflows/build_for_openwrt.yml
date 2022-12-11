@@ -48,6 +48,7 @@ jobs:
         cp ./WasmEdge/utils/openwrt/configuration/Makefile ./openwrt/package/utils/WasmEdge/
         cd ./openwrt
         ls ./
+        make download -j8 || make download -j1 V=s
         make menuconfig
     - name: Pack OpenWrt images and WasmEdge ipk
       run: |
